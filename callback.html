@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Connexion TikTok — Vsp Ouest CM</title>
+  <style>
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      max-width: 36rem;
+      margin: 3rem auto;
+      padding: 0 1.25rem;
+      line-height: 1.5;
+      color: #1a1a1a;
+    }
+    code { background: #f3f3f3; padding: 0.15rem 0.35rem; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>Retour TikTok</h1>
+  <p>
+    Cette page sert d’URL de redirection OAuth pour l’outil interne
+    <strong>Vsp Ouest CM</strong>.
+  </p>
+  <p id="msg">En attente du code d’autorisation…</p>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code");
+    const err = params.get("error");
+    const el = document.getElementById("msg");
+    if (err) {
+      el.textContent = "Erreur TikTok : " + err;
+    } else if (code) {
+      el.innerHTML = "Code reçu. Tu peux revenir dans Cursor.<br><code>" +
+        code.slice(0, 16) + "…</code>";
+    } else {
+      el.textContent = "Aucun code pour le moment (page de redirection prête).";
+    }
+  </script>
+</body>
+</html>
